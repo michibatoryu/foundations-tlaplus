@@ -62,15 +62,14 @@ Delta[q \in Q, c \in Sigma] ==
 Accept == {"charging", "moving", "turning", "ret_moving", "ret_turning"}
 
 Next == 
-IF str = <<>> THEN
+IF Len(str) = 0 THEN
  qcur \in Accept /\ qcur' = qcur /\ str' = str
 ELSE 
-  /\ qcur' = Delta[qcur,str[1]]
-  /\ str'  = Tail(str)
+  <<qcur',str'>> = <<Delta[qcur,str[1]],Tail(str)>>
 
 Spec == Init /\ [][Next]_<<qcur,str>>
 
 =============================================================================
 \* Modification History
-\* Last modified Thu Jan 26 21:22:24 EST 2023 by bcspe
+\* Last modified Thu Jan 26 21:18:32 EST 2023 by bcspe
 \* Created Thu Jan 19 19:40:26 EST 2023 by michi
