@@ -2,18 +2,17 @@
 
 EXTENDS Integers
 
-VARIABLES
-left, right
+VARIABLES left, right
 
 
-SubtractionGame(left, right) ==
-left >= 0 /\ right >= 0 /\
-IF left = 0 /\ right = 0 THEN
-left' = 0 /\ right' = 0
-ELSE IF left >= right THEN
-left' = left - right /\ right' = 0
+SubtractionGame(l, r) ==
+l >= 0 /\ r >= 0 /\
+IF l = 0 /\ r = 0 THEN
+l' = 0 /\ r' = 0
+ELSE IF l >= r THEN
+l' = l - r /\ r' = 0
 ELSE
-left' = 0 /\ right' = right - left
+l' = 0 /\ r' = r - l
 
 (* --initial state of the game-- *)
 Init ==
@@ -25,4 +24,4 @@ Init /\ [][SubtractionGame(left, right)]_<<left, right>>
 
 (* --end of the specification-- *)
 
-END subtractiongame
+====================================
